@@ -1,0 +1,102 @@
+CS367 Big Ideas
+
+1. Trees
+    1. Tree Traversal:
+        1. level order: top to bottom
+        2. preorder: VC
+        3. postorder: CV
+        4. in-order: no
+    2. Tree Height -> Recursive call to measure the height of a tree
+    3. Heap -> Complete Binary Tree
+        1. MinHeap
+        2. MaxHeap
+        3. Reheapify
+    4. Binary Search Tree: no duplicate items are allowed
+        1. Insert Node
+        2. Delete Node
+            1. If node’s have 1 children
+            2. if node’s does not have any children
+            3. if node’s have 2 children
+                1. in-order predecessor: biggest key on the left subtree
+                2. in-order successor: smallest key on the right subtree.
+        3. Traversal:
+            1. pre-order: VLR
+            2. postorder: LRV
+            3. inorder: LVR
+    5. Red-Black Tree
+        1. Root must be black node.
+        2. Red only have black children
+        3. every path have same amount of black nodes.
+        4. TriNode restructuring if Parent’s sibling is null
+        5. Recoloring if Parent’s sibling is not null
+        6. Cascading fixes: if P’s sibling is black or null, use Trinode restructuring of K P and G. Use Recoloring if p’s sibling is red. 
+    6. Tree Classification
+        1. Full Tree
+        2. Complete tree
+        3. Height-Balanced tree: right and left path no greater than 1
+        4. Balanced Tree: O(logN)
+    7. Balanced Search Tree -> one type of binary search tree. -> AVL : keep a balanced value in each node -1, 0 ,1.Detection when balance value becomes +- 2. Use “Rotation” rebalance the tree. 
+    8. BTrees: no binary tree nodes restriction. 
+
+
+2. Graphs
+    1. Graph Traversal:
+        1. BFS -> use a queue -> level-order traversal
+        2. DFS -> use a Stack -> pre-order traversal 
+        3. Dijkstra’s algorithm -> Priority Queue -> trace shortest path
+        4. Topological Ordering -> Stack
+    2. Graph Terminology
+        1. Connected Graph (undirected) there is a path between any given pair of vertices
+        2. Complete Graph (directed or undirected) there is an edge exist between every pair of vertices. 
+        3. Directed Connected Graph 
+            1. weakly connected: a path exists for every vertices ignoring direction
+            2. strongly connected: a path exists from any one vertex to any other. (take into consideration the direction)
+
+
+
+3. Hashing 
+    1. Hash Function Steps:
+        1. generate a hash code:
+            1. Extraction: divided the keys into parts
+            2. Weighting: emphasize some part more than the other part.
+            3. Folding: “combine” each part into an int.
+        2. compress the hash code into a valid hash index
+            1. abs(hash code) mod Table Size.
+    2. Table Size: choose a prime number or at least int not divisible by 2-19
+    3. Resize the table
+        1. Naive Expand -> make 2x larger
+        2. Rehashing -> double the size to the nearest prime number
+    4. Handle collisions
+        1. Open Addressing -> find new open spots if collision happens.
+            1. Linear Probing(PS):search one by one, H(k), H(k+1), H(k+2)
+            2. Quadratic Probing: add squares.H(k), H(k)+1^2, H(k) + 2^2
+            3. (preferred)Double Hashing: use a second hash function to determine step size: H, H + Step Size, H+ 2*SS, …
+        2. Use Buckets: store more than one key
+            1. Array Buckets (fixed size) -> might  run out of space
+            2. “Chained” Buckets using LinkedList (preferred) -> chain size could get really long and ended up with O(N)
+            3. Tree Buckets using a BST -> only used when expect lots of collisions
+
+4. Sorts:
+    1. Not-so-good sort 
+        1. Bubble sort -> worst case: O(N^2). Best case: O(N)
+        2. Insertion Sort -> WC: O(N^2). Best case O(N)
+        3. Selection Sort -> BC = WC: O(N^2)
+    2. Better Sort
+        1. Heap Sort 
+            1.  Best = Worst case: O(NlogN)
+            2. 2 approaches:
+                1. Naive expand -> use minHeap, but use 2N memory
+                2. In-place expand -> use maxHeap.
+        2. Merge Sort 
+            1.  Best = Worst case: O(NlogN)
+            2. Space Complexity: 2N because of 2 arrays 
+        3. Quick Sort 
+            1. Best: O(NlogN). Worst: O(N^2) if picked the fist or last item.
+            2. Pick a pivot value using the “Median of Three” (only works for array length > 3). 
+            3. recursively sort the left and right partition
+    3. Stable sorts
+        1. Bubble, Insertion, and Merge sorts are all stable.
+        2. used to sort composite items.
+    4. Radix Sorts
+        1. works for short word of equal length, sort from the rightmost digit to left most.
+        2. Complexity: O(N*R) * LEN  (N:number of items, R:Range, LEN: #of digits).
