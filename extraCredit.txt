@@ -1,0 +1,153 @@
+Question 1:
+public static <E> E findMiddleItem(Listnode<E> head) { 
+	if(head == null) throw new IllegalArgumentException();
+	Listnode<E> curr = head;
+	Listnode<E> curr2 = head;
+	while(curr2 != null && curr2.getNext()!= null){
+	    curr = curr.getNext(); //first pointer step one
+	    curr2 = curr2.getNext().getNext(); //second pointer step two
+	}
+	return curr.getData();
+}
+
+Question 2:
+This is the implementation of a selection sort, which will sort the list in ascending order.
+
+
+
+Question 3:
+   public static <T> List<T> convertBTreeToArrayList(BinaryTreenode<T> root) {
+	List<T> myList = new ArrayList<>();
+	CBTToArrayList(root, myList);
+	return myList;
+   }
+   //in-order traversal heler method
+   private static<T> void CBTToArrayList(BinaryTreenode<T> node, List<T>myList){
+	if(node == null) return;
+	CBTToArrayList(node.getLeftChild(), myList);
+	myList.add(node.getData());
+	CBTToArrayList(node.getRIghtChild(),myList);
+   }
+
+
+Question 4:
+Part A:
+i)BFS: 1,2,4,6,5,7,3,9
+ii)spanning tree in adjacency list form
+1: 2,4,6
+2: 5
+3: 9
+4: 
+5:
+6: 7
+7: 3
+8: 
+9: 
+
+Part B:
+i)DFS: 1 2 4 5 7 3 6 9
+ii) spanning tree in adjacency list form
+1:2
+2:4
+3:6,9
+4:5
+5:7
+6: 
+7:3
+8:
+9:
+
+Question 5:
+a) 39, 25, 11, 7, 17, 33, 37, 45, 55, 47, 57
+b) in-order traversal
+c)
+                    39
+                 /       \
+               25         55
+              /   \      /   \
+            11    33    47    57
+           /        \
+          7         37
+
+d)
+                 45
+              /     \
+            25       55
+           /  \      / \  
+          11  33    47  57
+          /\    \        
+         7  17  37 
+
+e)    
+                 39
+               /     \ 
+              17     45
+             / \       \
+            11  33     55
+           /     \    /  \
+          7      37  47   57
+
+
+
+
+e)
+Question 6:
+
+a)           B_35
+          /       \
+       R_32       R_40
+      /    \      /    \
+   B_31   B_33   B_36   B_42 
+            \           /  \
+           R_34      R_41   R_49
+
+
+
+b)           B_5
+           /     \       
+         R_2      R_7
+        /  \     /   \
+      B_1  B_4  B_6  B_10 
+           /          /  \
+          R_3       R_9  R_11
+
+
+
+Question 7:
+a) nodes that have degree of 3: v0, v1, v5
+b) Dijkstra's algorithm tracing
+---------------------------------------------------------------------------
+iteration    |   visited nodes, shortest distance  |    PQ items
+---------------------------------------------------------------------------
+    0        |             -                       |  0 v0
+    1        |             v0 0                    |  2v3, 3v1, 6v2
+    2        |          v0 0,v3 2                  |  3v1, 5v2, 9v5, 10v4
+    3        |        v0 0,v3 2,v1 3               |  4v2, 9v4, 9v5
+    4        |      v0 0,v3 2,v1 3,v2 4            |  8v4, 9v5
+    5        |     v0 0,v3 2,v1 3,v2 4,v4 8        |  9v5, 10v6
+    6        |   v0 0,v3 2,v1 3,v2 4,v4 8,v5 9     |  10v6
+    7        | v0 0,v3 2,v1 3,v2 4,v4 8,v5 9,v10 6 |  empty
+
+c) shortest path from v0 to v6: v0 -> v1 -> v2 -> v4 -> v6
+d) shortest path from v0 to v5: v0 -> v3 -> v5
+
+Question 8
+public static List<Integer> setUnion(List<Integer> firstList, List<Integer> secondList){
+	Map<Integer,Integer> myMap = new HashMap<>();
+	for (int i = 0; i<secondList.size(); i++)
+	  myMap.put(secondList.get(i), i);
+	List<Integer> myList = new ArrayList<>();
+	for(int i = 0; i < firstList.size(); i++){
+	   if(myMap.containsKey(firstList.get(i))){
+	      myList.add(firstList.get(i));
+	      secondList.remove(firstList.get(i));
+	    }
+	   else
+	      myList.add(firstList.get(i));
+        }
+        for(int i = 0; i<secondList.size(); i++)
+	     myList.add(secondList.get(i));
+	return myList;
+}
+:
+
