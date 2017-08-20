@@ -1,0 +1,105 @@
+HW1:
+Question:
+Let list1 and list2 contain arbitrary number of items. Describe briefly what the following code snippet does:
+while (!list1.isEmpty()) {
+    list2.add(list2.size(), list1.remove(0));
+}
+Suppose the design requirement for the following code is to remove every other item from a given list.
+for (int i = 0; i < colors.size(); i += 2) {
+    colors.remove(i);
+}
+If colors initially contains ["violet", "indigo", "blue", "green", "yellow", "orange", "red"], then trace the code on this input by showing the value of i, value of colors.size() and contents of colors for each execution of the for loop body. To receive full credit, you should start by showing the initial values before the loop execution begins and then show results after each execution of the for loop, until you show the final results. Use this format for your answer: i = unInitialized, colors.size() = ..., colors = [...] and then i = 0, ...
+Does the code work as per the design requirement? Explain your answer briefly.
+
+
+Assume the following:
+The Iterator<E> interface is as discussed in lecture.
+The ArrayList<E> class implements the Iterable<E> and ListADT<E> interfaces.
+The items in a list can be compared with the equals method or the compareTo method.
+Complete the Java method specified below, making use of iterators Hint: You would need a lot of them!. Assume this method is implemented in a main class. To receive full credit, your solution:
+must explicitly use iterators for traversing lists
+must not use the contains method
+must not modify the contents of the parameter
+public static <E> ArrayList<E> flatten(ArrayList<ArrayList<E>> list) { 
+    // If list is null, throw a NullPointerException. 
+    // If list is empty, return a new empty list. 
+    // Otherwise create and return a new list that contains the objects contained in 
+    // any of the lists contained in list, removing duplicate items. The order of 
+    // items in the returned list should be the same as the order in which they 
+    // first appear in the original list. 
+
+
+    //Example: list: [[1,2,3], [4,3,6], [1,5]] result: [1,2,3,4,6,5]
+
+
+
+
+
+1. Let list1 and list2 contain arbitrary number of items. Describe briefly what the following code snippet does:
+while (!list1.isEmpty()) {
+    list2.add(list2.size(), list1.remove(0));
+}
+#Answer: as long as list1 is not empty, then it will remove whatever in list1 index 0, and add it to the end of list2.
+
+
+2. Suppose the design requirement for the following code is to remove every other item from a given list.
+for (int i = 0; i < colors.size(); i += 2) {
+    colors.remove(i);
+}
+	a. If colors initially contains ["violet", "indigo", "blue", "green", "yellow", "orange", "red"], 
+	then trace the code on this input by showing the value of i, value of colors.size() and contents of 
+	colors for each execution of the for loop body. To receive full credit, you should start by showing 
+	the initial values before the loop execution begins and then show results after each execution of the for loop,
+	until you show the final results. Use this format for your answer: i = unInitialized, colors.size() = ..., colors = [...] 
+	and then i = 0, ...
+	ANSWER: 
+	i = unInitialized, colors.size() = 7, colors = ["violet", "indigo", "blue", "green", "yellow", "orange", "red"]
+	i = 0, colors.size()=6, colors = [ "indigo", "blue", "green", "yellow", "orange", "red"]
+	i = 2, colors.size()=5, colors = ["indigo", "blue","yellow","orange","red"]
+	i = 4, colors.size()=4, colors = ["indigo", "blue","yellow","orange]
+	
+	b. Does the code work as per the design requirement? Explain your answer briefly.
+	ANSWER: It does not because as the above trace shows, it didn't end up removing every other items and that is because
+	in the for loop, as you removing item from the list, your size gets smaller. 
+
+3. Assume the following:
+	The Iterator<E> interface is as discussed in lecture.
+	The ArrayList<E> class implements the Iterable<E> and ListADT<E> interfaces.
+	The items in a list can be compared with the equals method or the compareTo method.
+Complete the Java method specified below, making use of iterators Hint: You would need a lot of them!. Assume this method is implemented in a main class. To receive full credit, your solution:
+	must explicitly use iterators for traversing lists
+	must not use the contains method
+	must not modify the contents of the parameter
+public static <E> ArrayList<E> flatten(ArrayList<ArrayList<E>> list) { 
+	if(list == null)  throw new NullPointerException();
+	if (list.isEmpty())  return new ArrayList<E>();
+	//This is the list that I will be returned. 
+	ArrayList <E> returnList = new ArrayList<E>();
+	//This outer iterator will start with ArrayList<ArrayList<E>> first index.
+	Iterator<ArrayList<E>> itr = list.iterator(); 
+    //This nested while loop cycles through the list to check if it has item, if so, then we would create another iterator for the ArrayList inside the outer ArrayList.
+	while(itr.hasNext()){ 
+		//A new Iterator for the inner ArrayList<E>
+		Iterator<E> internalItr = itr.next().iterator(); 
+		while(internalItr.hasNext()){
+			boolean duplicateItem = false;
+			E item = internalItr.next();
+			//this new Iterator is to iterate through the returnList.
+			Iterator<E> returnListItr = returnList.iterator();
+			while(returnListItr.hasNext()){
+				//check if the item is already in the returnList.If it is, then duplicate is true and it won't add it, and it will break out of the loop. 
+				if(item.equals(returnListItr.next())){
+					duplicateItem = true;
+					break;
+				}
+			}
+			if(duplicateItem == false){
+				returnList.add(item);
+			}
+		}
+	}
+		return returnList;
+
+}
+
+}

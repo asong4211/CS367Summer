@@ -1,0 +1,12 @@
+P2 Program Reflection:
+
+
+1. Empty Tree Case:
+Should always consider what would happen when the tree is empty, especially when you perform remove and get operation, this could cause big problems.
+
+2. Don't try to combine all the methods into one:
+I tried to make three of the traversal methods into one big method and have caused some exception errors.
+
+3. Exception handling:
+Don't handle the exception locally, instead you should have the calling method handle the exception. 
+

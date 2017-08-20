@@ -1,0 +1,28 @@
+================================================================================
+GRADE
+================================================================================
+
+Total grade points: 50 points
+
+Compilation:
+Neighbor: 7 points
+GraphNode: 13 points
+Player: 15 points
+SpyGraph: 15 points
+
+--------------------------------------------------------------------------------
+
+Your grade points: 50 points
+
+Compilation: No Errors
+Neighbor: 7 points
+GraphNode: 13 points
+Player: 15 points
+SpyGraph: 15 points
+
+--------------------------------------------------------------------------------
+
+Grading details
+
+Awesome job!
+

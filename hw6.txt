@@ -1,0 +1,120 @@
+HW6
+1. Consider the following directed graph, which is given in adjacency list form as described above and where vertices have numerical labels:
+
+1: 9
+2: 3, 5
+3: 7, 9
+4: 2, 3, 6
+5:
+6: 5
+7: 5
+8: 2, 3, 4
+9: 7
+Show the topological ordering for the graph above using the iterative method covered in lecture (rather than the recursive method in the readings). Use the 367 convention of choosing vertices in increasing numerical order. In each iteration of the algorithm, show the value of num and the stack contents: st.
+List the topological ordering of the vertices obtained.
+Note: You can just use csv format and explicitly mention which is the top. For example if your stack contents are the one discussed in Monday's lecture, then show:
+top: 4, 5, 6, 3, 2, 1 
+
+2. Consider the following undirected graph, which is given in adjacency matrix form and where vertices have character labels and edges have non-negative integer weights (no value indicates no edge exists):
+
+    A B C D E F G
+  +--------------
+A |   2 8 4     2
+B | 2     1 7
+C | 8     9   3 5
+D | 4 1 9   3
+E |   7   3   1
+F |     3   1   9
+G | 2   5     9
+a)List the node(s) that have a degree of 4.
+b) Trace Dijkstra's algorithm starting at node E by completing the table started below where each row represents one iteration of the algorithm.
+c) What is the shortest path from E to A? Give a list of vertices starting at E and ending at A.
+d) What is the shortest path from E to G? Give a list of vertices starting at E and ending at G.
+
+3. Complete the code of the printPairs method. This method takes in an integer array and a sum as argument and prints all pairs of numbers in the array that form the given sum.
+
+public static void printPairs(int arr[], int sum) { 
+
+For full credit:
+Your solution should work based on an unsorted array.
+You may not modify the input array.
+Your solution should work with a time-complexity of O(N), where N is the number of integers in the array.
+You may use any appropriate Java data structure implementation from java.util class. Also you may assume that an efficient implementation exists.
+Your function output should be of the following form:
+Pair with given sum 16 is:
+(10, 6)
+(26, -10)
+(0, 16)
+
+Question 1
+1a) 
+-step 0: st = top: 1
+	 num = 9
+-step 1: st = top:8,1
+         num = 9
+-step 2: st = top: 2,8,1
+         num = 9
+-step 3: st = top: 3,2,8,1
+         num = 9
+-step 4: st = top: 7,3,2,8,1
+         num = 9
+-step 5: st = top: 5,7,3,2,8,1
+         num = 9
+-step 6: st = top: 7,3,2,8,1
+         num = 8
+-step 7: st = top: 3,2,8,1
+         num = 7
+-step 8: st = top: 9,3,2,8,1
+         num = 7
+-step 9: st = top: 3,2,8,1
+	 num = 6
+-step 10: st = top: 2,8,1
+	 num = 5
+-step 11: st = top: 8,1
+         num = 4
+-step 12: st = top: 4,8,1
+	 num = 4
+-step 13: st = top: 6,4,8,1
+	 num = 4
+-step 14: st = top: 4,8,1
+         num = 3
+-step 15: st = top: 8,1
+	 num = 2
+-step 16: st = top: 1
+	 num = 1
+-step 17: st = empty
+	 num = 0
+
+1b) Topological ordering: 1,8,4,6,2,3,9,7,5
+
+Question 2
+a) nodes that have degree of 4: A, C, D
+b) Dijkstra's Algorithm:
+Iteration   |    Visited Vertexes and shortest distance |   PQ items
+-------------------------------------------------------------------------------
+   0        |                    -                      | 0E
+   1        |                  E0                       | 1F,3D,7B
+   2        |                 E0, F1                    | 3D,4C,7B,10G
+   3        |              E0, F1, D3                   | 4B,4C,7A,10G
+   4        |             E0, F1, D3, B4                | 4C,6A,10G
+   5        |           E0, F1, D3, B4, C4              | 6A,9G
+   6        |        E0, F1, D3, B4,C4, A6              | 8G
+   7        |       E0, F1, D3, B4, C4, A6, G8          | EMPTY
+
+c) path from E to A: E -> D -> B -> A
+d) path from E to G: E -> D -> B -> A -> G
+
+Question 3: 
+public static void printPairs(int arr[], int sum){
+	HashMap<Integer,Integer> myMap = new HashMap<>();
+	//load all the numbers in the array into the table.
+	for(int i = 0; i < arr.length; i++) myMap.put(arr[i],i);
+	System.out.println("Pair with given sum 16 is: ");
+	for(int j = 0; j < arr.length; j++){
+	   if(myMap.containsKey(sum-arr[j]) && myMap.get(sum-arr[j]) != j){ 
+	    //found a pair
+	   System.out.println("("+ arr[j] + ","+ (sum-arr[j]) + ")");
+	   myMap.remove(arr[j]); //avoid printing duplicate copy
+	   }
+	}
+}    

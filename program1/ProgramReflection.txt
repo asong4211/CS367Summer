@@ -1,0 +1,11 @@
+P1 Reflection:
+
+
+1. Throwing Exception
+When throw an exception, it should not print the exception, but it should call the super constructor and pass in the error message.
+
+2. Implements an interface
+When implements ListADT<E>, the class that implements it should also be generic, don't replace E with Object in the method.
+
+3. Empty case
+Should always consider the case when the list is empty, especially for remove or get operation.

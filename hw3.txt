@@ -1,0 +1,130 @@
+HW3:
+1. Suppose the DblListnode<E> class is implemented as in the readings. 
+The following class implements the ListADT interface using a circular doubly-linked chain of nodes:
+
+
+public class CircularDblLinkedList<E> implements ListADT<E> {
+
+    // Reference to the first node (position 0) of a circular doubly-linked
+    // chain of nodes. Recall that the next reference of the last node
+    // references the first node and the prev reference of the first node
+    // references the last node making the chain of nodes circular.
+    private DblListnode<E> items;
+    // The number of items in the list
+    private int numItems;
+
+    public CircularDblLinkedList() {
+        // Initially the list is empty
+        items = null;
+        numItems = 0;
+    }
+
+    // Return the item at position pos if pos is valid, otherwise throw
+    // IndexOutOfBoundsException. This method traverses the fewest nodes
+    // possible while locating the node at pos.
+    public E get(int pos) {
+        // IMPLEMENT THIS
+    }
+}
+Complete the get() method according to its specification. For full credit, your solution:
+must locate the node at pos in the most efficient manner possible (i.e., call getNext() and getPrev() as few times as possible).
+must not modify the DblListnode class, the CircularDblLinkedList class's methods or fields declarations.
+must not change the contents or ordering of the nodes in the list during execution.
+
+2. Assume you are comparing three different algorithms to solve some problem and have determined the worst-case time equations for each:
+
+Algorithm 1: T(N) = 1500N + 500
+Algorithm 2: T(N) = 2N2 + N + 20
+Algorithm 3: T(N) = 30Nlog2N + 3N
+
+a)What is the worst-case time complexity for each algorithm?
+b)Which is the algorithm that has the lowest worst-case time complexity?
+c)Should the algorithm with the lowest complexity always be used? Briefly explain why/why not?
+
+3. Assume the following:
+The StackADT<E> interface and the ArrayStack<E> class implementation as in readings.
+
+Consider the following secret method:
+                                                                                                                                                                    
+   public static void secret(String secretString) {
+   
+        int n = secretString.length();
+        StackADT<Character> stack = new ArrayStack<Character>();
+        
+        for (int i = 0; i < n; i++) { 
+            stack.push(secretString.charAt(i));
+        }
+      
+        while(!stack.isEmpty()) { 
+             Character ch = stack.pop();
+             System.out.print(ch);
+        } 
+   }
+Briefly describe what secret(...) method does.
+
+
+
+
+
+Question#1: 
+public class CircularDblLinkedList<E> implements ListADT<E> {
+
+    // Reference to the first node (position 0) of a circular doubly-linked
+    // chain of nodes. Recall that the next reference of the last node
+    // references the first node and the prev reference of the first node
+    // references the last node making the chain of nodes circular.
+    private DblListnode<E> items;
+    // The number of items in the list
+    private int numItems;
+
+    public CircularDblLinkedList() {
+        // Initially the list is empty
+        items = null;
+        numItems = 0;
+    }
+
+    // Return the item at position pos if pos is valid, otherwise throw
+    // IndexOutOfBoundsException. This method traverses the fewest nodes
+    // possible while locating the node at pos.
+   	@Override
+	public E get(int pos) {
+		if(pos >= numItems || pos < 0) throw new IndexOutOfBoundsException();
+		//This reference points to the head of the list at position 0;
+		DblListnode<E> curr = items;
+		//This variable stores the half Point of the list
+		double halfPoint = numItems / 2; 
+		//If the position is in the first half of the list, use curr.getNext();
+		if(pos <= halfPoint){
+			for(int i = 0; i < pos; i++)
+				curr = curr.getNext();
+		}
+		//If the position is in the second half of the list, use curr.getPrev();
+		else if(pos > halfPoint){
+			for(int i = numItems; i > pos ; i--)
+				curr = curr.getPrev();
+		}
+		return curr.getData();
+	}
+}
+
+
+
+Question#2:
+a) 
+Algorithm1: Worst case: O(N)
+Algorithm2: Worst case: O(N^2)
+Algorithm3: worst case: O(Nlog(N))
+b)
+Algorithm1 has the lowest worst case time complexity
+c)
+No. Because if the problem size (N) is too small, then algorithm2 with the square
+would not be as bad. For example, when the problem size is 10, T2 << T3.But
+if the problem sizes are big enough, then Algorithm3 would be much more efficient.
+The memory of the algorithm should also be taken into consideration.
+
+Question#3
+The method add a string of character from secretString into the instance stack,
+and because StackADT has Last In First Out implementation / protocol,
+therefore all the  characters in stack would be removed and printed in the reverse
+ order. So if the input string is "HelloWorld", then it would print "dlroWolleH".
+

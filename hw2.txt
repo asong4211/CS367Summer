@@ -1,0 +1,189 @@
+
+Homework #2
+1. Consider the following program:
+void main() {
+    System.out.println("main begins");
+    try {
+        a();
+        b();
+    } catch (Ex1 ex) {
+        System.out.println("main caught Ex1");
+    } catch (Ex3 ex) {
+        System.out.println("main caught Ex3");
+    } finally {
+        System.out.println("main finally");
+    }
+    System.out.println("main completes");
+}
+
+void a() {
+    System.out.println("a begins");
+    try {
+        if (condForEx1) {
+            b();
+        } else {
+            throw new Ex1();
+        }
+    } catch (Ex2 ex) {
+        System.out.println("a caught Ex2");
+    }
+    System.out.println("a completes");
+}
+
+void b() {
+    System.out.println("b begins");
+    try {
+        if (condForEx2) throw new Ex2();
+        if (condForEx3) throw new Ex3();
+    } catch (Ex3 ex) {
+        System.out.println("b caught ex3");
+    } finally {
+        System.out.println("b finally");
+    }
+    System.out.println("b completes");
+}
+1. For each part below determine the complete output that would be output if the code above was run with the values of the condForEx variables as specified below. Assume the exception classes Ex1, Ex2, and Ex3 each extend RuntimeException. If an exception is passed out of main, show the output of the runtime environment as "Program terminated due to Exception ExN  ", where N is the particular exception number.
+
+a)What would be output if condForEx1, condForEx2, and condForEx3 are all false?
+b)What would be output if condForEx1 is true and condForEx2 and condForEx3 are false?
+c)What would be output if condForEx1 and condForEx2 are true and condForEx3 is false?
+d)What would be output if condForEx1 and condForEx3 are true and condForEx2 is false?
+e)How would the code need to be modified if exception type Ex2 were a checked exception?
+
+
+2. Consider the following secret generic method:
+
+   public static <E> boolean secret(Listnode<E> chain1, Listnode<E> chain2) {
+
+      while (chain1 != null && chain2 != null) {
+         if (chain1.getData().equals(chain2.getData())) {
+            chain1 = chain1.getNext();
+            chain2 = chain2.getNext();
+         }
+         else return false;
+      }
+
+      if (chain1 == null && chain2 == null) return true;
+
+      return false;
+  }
+
+What is returned by method secret() given the contents of the chains of nodes described below. To get the maximum practice from this question, carefully trace the code rather than attempting to run it.
+a)chain1 is null and chain2 is null
+b)chain1 contains Integers 11, 22, 33 and chain2 contains Integers 33, 22, 11
+c)chain1 contains Integers 33, 55, 77 and chain2 also contains Integers 33, 55, 77
+d)chain1 contains Integers 99, 22 and chain2 contains Integers 99, 22, 44
+e)both chain1 and chain2 contain Strings "This", "is, "a", "test"
+f)chain1 contains Strings "Hello", "from", "the", "outside" and chain2 contains "Hello", "from", "the", "other side"
+g)chain1 contains Strings "The Cat", "in", "the Hat" and chain2 is null
+
+In one line describe the purpose of the secret() method. Be very precise in your description and do not explain the steps in the code.
+
+3. Complete the Java method specified below. Assume this method is implemented in a main class. 
+Hint: Consider using two references to step through the singly linked list and think carefully about when to advance them.
+public static <E> E findKthToLastItem(Listnode<E> head, int k) { 
+    // Find kth to last element of a singly linked list. 
+    // If head is null, throw IllegalArgumentException. 
+    // Make sure that your code works for all corner cases and wherever it is applicable, throw an IndexOutOfBoundsException. 
+    // Listnode class has all the functions discussed in the readings and lectures. 
+    // The singly linked list does not include header node and does not have the "lastNode" pointer. 
+    // The list nodes are guaranteed not to be null. The value of k is guaranteed to greater than or equal to 1. 
+    // For full credit, your solution can use only the functions available in Listnode and cannot use any functions from LinkedList class, specifically the size() function. Your solution should also explicitly use two references for the traversal. 
+
+
+    //Example: list: [10 -> 20 -> 30 -> 40 -> 50 -> \], head is a reference to the node with value 10, k = 2 result: 40
+
+
+
+
+
+1.
+a) condForEx1, condForEx2, condForEx3 are all false -> Output:
+main begins.
+a begins
+main caught Ex1.
+main finally.
+main completes. 
+
+b) condForEx1 is true, and condForEx2 and condForEx3 are false ->Output:
+main begins
+a begins
+b begins
+b finally
+b completes
+a completes
+b begins
+b finally
+b completes
+main finally
+main completes.
+
+c)condForEx1 and condForEx2 are true and condForEx3 is false.
+Output:
+main begins
+a begins
+b begins
+b finally
+a caught Ex2
+a completes
+b begins
+b finally
+main finally
+*program terminated
+
+d)condForEx1, and condForEx3 are true, but condForEx2 is false.
+Output:
+main begins
+a begins
+b begins
+b caught ex3
+b finally
+b completes
+a completes
+b begins
+b caught ex3
+b finally
+b completes
+main finally
+main completes
+
+e) Then the method header for b() and main() should have "throws Ex2()" after the method parameter; 
+
+Question #2:
+#2 
+(1a) When both chain1, and chain2 are null, it will return true. 
+(1b) It will return false because when it compares the first node and its not equal, it will enter the else statement and return false.
+(1c) It will return true because chain1 and chain2 will both become null after the while loop, so it ultimately returns true.
+(1d) It will return false because on the last node chain1 is pointing at null while chain2 points to 44, the twos are not equal so it return false.
+(1e) It will return true because chain1 and chain2 are the same, therefore ultimately will be set to null, and return true.
+(1f) It will return false because the last node is different, and would enter the else statement and immediately return false.
+(1g) It will return false because chain1 is not null but chain2 is null, so it won't enter either the while statement nor the if statement, it will just jump straight to return false. 
+(2) This method check and see if the two chains are exactly the same, it returns true if they are, returns false otherwise. 
+
+Question #3:
+	public static <E> E findKthToLastItem(Listnode<E> head, int k) {
+		if (head == null) throw new IllegalArgumentException();
+		if (k <= 0) throw new IndexOutOfBoundsException();
+		Listnode<E> curr = head;
+		Listnode<E> newCurr = head;
+		//If we index the list starting from 1, and we incrementally loop ith step 
+		//forward of the number of elements to the last element. For example, if we have 
+		// a list of 500 number, the second to last would be index of 499. We use this
+		//loop to let curr first step forward ith step. 
+			for(int i = 1; i < k; i++){ 
+				curr = curr.getNext();
+				//If the user enter a k that is greater than the length of the list, then 
+				//we throw an indexOutOfBoundsException.
+				if(curr == null) throw new IndexOutOfBoundsException(); 
+			}
+		//Now curr is stepping kth step forward, and newCurr is still pointing 
+		//at head. We could now tell both newCurr and Curr to step simultaneously until
+		//curr hits the last element, then newCurr would be at the position of n - k, 
+		//which is the kth to last element in the list. 
+		while(curr.getNext() != null){
+			newCurr = newCurr.getNext();
+			curr = curr.getNext();
+		}
+		return newCurr.getData(); //Return the data that newCurr is pointing at.
+	}
+

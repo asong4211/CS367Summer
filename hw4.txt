@@ -1,0 +1,209 @@
+HW4:
+1. Read the following recursive implementation for Fibonacci numbers and answer the below questions.
+UPDATE:You should show all the complete execution tree, including duplicate calls.
+
+
+int f(int n)
+{
+   if (n <= 1)
+      return n;
+   return f(n - 1) + f(n - 2);
+}
+a)Show the execution tree tracing for f(5). Use backslash and forward slash to represent right and left children; also use sufficient enough spacing to make your answer readable!
+b) How many number of base case calls are happening in this recursion? Or in other words, what is the work done?
+c)How many unique number of calls are happening?
+
+2. Answer the following questions regarding the following data structures:
+
+
+i.     9        ii.     5     iii.   4       iv.  4       v.   10    
+      / \              /            /|\          / \           / \  
+     7   8            0            3 4 5        1  -2         3   12
+    /                /                           \ /         / \  
+   6                -5                            2         1   4
+a)Which are valid trees? (List all correct answers.)
+b)Which are valid binary trees? (List all correct answers.)
+c)Which are valid binary search trees (BSTs)? (List all correct answers.)
+d)List the nodes of tree v. above in the order in which a pre-order traversal would visit them.
+e)List the nodes of tree v. above in the order in which a post-order traversal would visit them.
+f)List the nodes of tree v. above in the order in which an in-order traversal would visit them.
+g)List the nodes of tree v. above in the order in which a level-order traversal would visit them.
+
+3. Consider the following implementation of a node in a binary tree:
+
+class BinaryTreenode<T> {
+    private T data;
+    private BinaryTreenode<T> leftChild;
+    private BinaryTreenode<T> rightChild;
+
+    public BinaryTreenode(T item) {
+        data = item;
+        leftChild = null;
+        rightChild = null;
+    }
+
+    public T getData() {
+        return data;
+    }
+    
+    public BinaryTreenode<T> getLeft() {
+        return leftChild;
+    }
+    
+    public BinaryTreenode<T> getRight() {
+        return rightChild;
+    }
+    ...
+}
+Implement the following countLeaves function that determines the number of leaves of the binary tree. Assume that first call to this function will be with root node.
+For full credit, your code:
+
+must not modify the tree.
+must not be more than 10 lines of code and may be fewer.
+
+class BinaryTree<T> {
+    BinaryTreenode<T> root;
+    
+    public int countLeaves() { return countLeaves(root); }
+    private int countLeaves(BinaryTreenode<T> node) {
+    ...
+    }
+}
+
+4. Answer the following questions about a standard binary search tree. Make sure that your tree is properly readable on the CSL machine.
+a) Show the binary search tree that results from inserting the following sequence of integers into a tree that is initially empty:
+    34, 32, 35, 37, 31, 36, 33, 38
+    
+b)Show the binary search tree that results from inserting the following sequence of integers into a tree that is initially empty:
+    9, 23, 12, 6, 10, 5, 14, 3, 1, 4
+    
+c)Show the binary search tree (one of them would do) that results from deleting 32 from the tree in part a.
+d)Show the binary search tree (one of them would do) that results from deleting 9 from the tree in part b.
+
+5. Answer the following questions about a binary tree with N nodes. Recall that a binary tree is height-balanced if, for every node, the height of the left or right subtree is at most one more than the height of the other subtree. Equivalently, the height of the tree is as small as possible.
+
+Hint: You will need the following mathematical functions: floor and ceiling. Try out different example cases before finializing your answer.
+
+a)What is the maximum height of the tree?
+b)What is the maximum number of leaves?
+c)What is the approximate maximum height of the tree if it is balanced?
+d)What is the maximum number of leaves if the tree is height-balanced?
+
+6. Consider the same implementation of a node in a binary tree as in question 3. Assume that you also have the following height method implemented.
+
+class BinaryTree<T> {       
+    BinaryTreenode<T> root;
+        
+    public int height(BinaryTreenode<T> node) {
+        //Assume this method is implemented for you
+    }
+    boolean isBalanced(BinaryTreenode<T> node) { 
+        ...
+        //COMPLETE THIS METHOD
+    }                                                                                                                                                                  
+}       
+Complete the implementation of isBalanced method that determines if the binary tree is height-balanced or not. 
+For full credit, your code:
+must not modify the tree.
+may use any required functions from java.lang.Math.
+must not be more than 15 lines of code and may be fewer.
+ 
+boolean isBalanced(BinaryTreenode<T> node) {
+
+
+
+
+
+
+Question #1 
+a)
+			              f(5)
+			           /         \     
+				/              \
+			      f(4)               f(3)
+			     /    \             /   \
+		          f(3)     f(2)       f(2) f(1)
+	         	 /  \     /   \        / \
+		       f(2) f(1) f(1) f(0)   f(1) f(0)
+	              /  \
+		   f(1)  f(0)					
+
+b)base calls: a total of 8 base call calls to return n.
+c)a total of 6 unique calls.
+
+
+Question #2:
+a) i,ii, iii, and v are valid trees
+b) i,ii,v are valid binary trees
+c) ii,v are valid binary search trees.
+d) preorder : 10 -> 3 -> 1 -> 4 -> 12 
+e) post-order: 1 -> 4 -> 3 -> 12 -> 10
+f) in-order: 1 -> 3 -> 4 -> 10 -> 12
+g) level order: 10 -> 3 -> 12 -> 1  -> 4
+
+Question #3:
+    private int countLeaves(BinaryTreenode<T> node){
+      if(node == null) return 0;//Base case, reach the end of the tree
+      //If the left and right child is null that means it is a leave, return 1
+      if(node.getLeft() == null && node.getRight() == null) return 1;
+      //recursively call countLeaves and pass in the left and the right child.
+      else return countLeaves(node.getLeft()) + countLeaves(node.getRight());
+    }
+Question #4:
+a)          34
+	   /   \
+         32     35
+        /  \     \
+       31  33    37
+                /  \
+               36   38
+
+b)
+            9
+          /   \
+         6    23
+        /     /
+       5     12
+      /     /  \
+     3     10  14
+    / \
+   1  4
+
+c)        34
+         /  \
+        33  35
+       /      \
+      31      37
+             /  \
+            36  38
+
+d)
+            10
+           /  \
+          6   23
+         /    /
+        5    12
+       /      \
+      3        14
+     / \
+    1   4
+
+
+Question #5:
+
+a)maximum height: N
+b)maimum nodes: Math.ceil(N / 2);
+c)approximate height: log2(N) + 1
+d)maximum nodes: Math.ceil(N/2);
+
+Qyestion #6:
+     boolean isBalanced(BinaryTreenode<T> node){
+	//reach the end of the tree, and did not find any imbalance, return true
+	if(node == null) return true;
+	//if at any point, the absolute value of the differences between the right node
+	//and left node height greater than 1, that means the tree is not balance. 
+	if(Math.abs(height(node.getRight()) - height(node.getLeft())) > 1) return false;
+	//recursively call to check the left child and the rightChild is balanced.
+	return isBalanced(node.getLeftChild()) && isBalanced(node.getRightChild());
+      }
+

@@ -1,0 +1,9 @@
+P3 Reflection
+
+
+1. BFS Traversal
+BFS Graph Traversal in some way could be implemented like a level-order tree traversal. Consider a graph to be a spanning tree.
+
+2. Dijkstra Traversal
+Use Comparator if you need to compare objects to put into your priority queue
+

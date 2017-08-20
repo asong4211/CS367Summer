@@ -1,0 +1,95 @@
+HOMEWORK 5:
+
+1. Show the red-black tree that results from inserting each sequence of integers into a tree that is initially empty. In your answer, you can grapically draw red nodes with their data and use R_ as the prefix and black nodes with B_ as the prefix. An example for this is shown below.
+
+A) 55, 99, 33, 44, 11, 77, 88, 66, 22
+B) 77, 66, 55, 22, 33, 88, 11, 44, 99
+
+Here is an example of the RBT from lecture:
+
+                     B_14
+                   /      \
+                 B_7      R_20
+                /  \      /   \
+              R_1  R_11 B_18  B_23
+                                \
+                                R_29
+
+
+
+2. Consider the following directed graph, which is given in adjacency list form:
+
+1 : 2, 5, 7
+2 : 3, 4, 5
+3 : 1
+4 : 3, 6
+5 : 8
+6 : 1, 4, 9
+7 : 2, 9
+8 : 6
+9 : 3
+(I.e., the first line says that the graph contains a directed edge from node 1 to node 2, an edge from 1 to 5, and so on.)
+
+Part A:
+
+Show the order that nodes are visited for breadth-first search on the graph above starting at 1 and visiting successors in increasing numerical order (i.e., follow the CS 367 conventions). (e.g., if a node has edges to vertices 3, 7, and 9, your search should visit node 3 before 7 and 7 before 9).
+Give the corresponding BFS spanning tree in adjacency list form. 
+Note: List add nodes in the adjacency list even if there are no edges from that particular node.
+Part B:
+
+Repeat part A but for depth-first search, again visiting successors in increasing numerical order.
+Give the corresponding DFS spanning tree in adjacency list form. 
+Note: List add nodes in the adjacency list even if there are no edges from that particular node.
+
+
+
+Homework 5:
+
+1a) 
+                       B_55
+                     /       \
+                  R_33        R_88
+                 /   \        /   \  
+               B_11   B_44  B_77  B_99
+                 \          /      
+                 R_22     R_66
+
+
+
+
+1b)                   B_66
+	 	    /       \ 
+                  R_33      B_88
+                 /   \       /  \
+               B_22  B_55  R_77 R_99
+               /      /
+              R_11  R_44 
+
+
+
+2)
+Part A    
+i) BFS order: 1,2,5,7,3,4,8,9,6
+ii) 
+1: 2,5,7
+2: 3,4
+3: no neighbor
+4: 6
+5: 8
+6: no neighbor
+7: 9
+8: no neighbor
+9: no neighbor
+
+Part B
+i) DFS order: 1,2,3,4,6,9,5,8,7
+ii)
+1: 2,7
+2: 3,4,5
+3: no neighbor
+4: 6
+5: 8
+6: 9
+7: no neighbor
+8: no neighbor
+9: no neighbor
