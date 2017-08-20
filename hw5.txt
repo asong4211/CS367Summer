@@ -42,7 +42,7 @@ Give the corresponding DFS spanning tree in adjacency list form.
 Note: List add nodes in the adjacency list even if there are no edges from that particular node.
 
 
-
+***************************************************** MY ANSWER ***********************************************************
 Homework 5:
 
 1a) 
