@@ -33,7 +33,7 @@ public static <E> ArrayList<E> flatten(ArrayList<ArrayList<E>> list) {
 
 
 
-
+***************************************************** MY ANSWER ***********************************************************
 
 1. Let list1 and list2 contain arbitrary number of items. Describe briefly what the following code snippet does:
 while (!list1.isEmpty()) {
