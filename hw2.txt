@@ -95,7 +95,7 @@ public static <E> E findKthToLastItem(Listnode<E> head, int k) {
 
 
 
-
+***************************************************** MY ANSWER ***********************************************************
 
 1.
 a) condForEx1, condForEx2, condForEx3 are all false -> Output:
