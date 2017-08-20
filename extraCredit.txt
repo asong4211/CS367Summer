@@ -1,3 +1,149 @@
+EXTRACREDIT HOMEWORK
+
+Recall the definition of Listnode<E> class. Complete the Java method specified below. Assume this method is implemented in a main class.
+public static <E> E findMiddleItem(Listnode<E> head) { 
+    // Find the middle item of a singly linked list and return the item 
+    // If head is null, throw IllegalArgumentException. 
+    // Listnode class has all the functions discussed in the readings and lectures. 
+    // The singly linked list does not include header node and does not have the "lastNode" pointer. 
+    // The list nodes are guaranteed not to be null. 
+    //Example: list: [10 -> 20 -> 30 -> 40 -> 50 -> \], head is a reference to the node with value 10, result: 30 
+    //Example: list: [10 -> 20 -> 30 -> 40 -> 50 -> 60 ->\], head is a reference to the node with value 10, result: 40
+For full credit:
+Your solution can use only the functions available in Listnode class and cannot use any functions from LinkedList class, specifically the size() function.
+Your solution should explicitly use two references for the traversal.
+Your solution should not traverse the list more than once!
+
+In one sentence, explain what the below secret(...) method does. 
+Hint: Consider an input array which contains items in no particular order for tracing the code.
+void secret(int arr[], int start_index, int end_index) {
+    if(start_index >= end_index)   
+        return;
+    int min_index; 
+    int temp; 
+ 
+    /* Assume that minIndex() returns index of minimum value in 
+        array arr[start_index...end_index] */
+    min_index = minIndex(arr, start_index, end_index);
+ 
+    temp = arr[start_index];
+    arr[start_index] = arr[min_index];
+    arr[min_index] = temp;        
+ 
+    secret(arr, start_index + 1, end_index);
+}     
+
+Consider the below tree:
+        10        
+      /    \      
+     12     15   
+    /  \   /  \      
+   25  30 36  42
+
+public static <T> List<T> convertBTreeToArrayList(BinaryTreenode<T> root) {
+
+Complete the recursive code of convertBTreeToArrayList method.
+Your ArrayList should contain these elements (in the provided order): 25, 12, 30, 10, 36, 15, 42
+Recall the definition of BinaryTreenode.
+You may implement a helper companion method.
+
+Consider the following directed graph, which is given in adjacency list form:
+
+1: 2, 4, 6
+2: 4, 5
+3: 1, 2, 6, 9
+4: 5
+5: 4, 7
+6: 1, 5, 7
+7: 3, 5
+8: 2, 6, 7
+9: 1, 7 
+Part A:
+
+Show the order that nodes are visited for breadth-first search on the graph above starting at 1 and visiting successors in increasing numerical order (i.e., follow the CS 367 conventions).
+Give the corresponding BFS spanning tree in adjacency list form. 
+Note: List add nodes in the adjacency list even if there are no edges from that particular node.
+Part B:
+
+Repeat part A but for depth-first search, again visiting successors in increasing numerical order.
+Give the corresponding DFS spanning tree in adjacency list form. 
+Note: List add nodes in the adjacency list even if there are no edges from that particular node.
+
+Consider the following Binary Search Tree:
+         39
+        /  \
+      25    45
+     /  \     \
+    11  33     55
+   / \    \   /  \
+  7   17  37 47  57
+List the nodes in the order they're visited for a preorder traversal on the given tree.
+Which traversal will visit the nodes in increasing order?
+Show the binary search tree that results from deleting 45 and 17 from the given tree.
+Show the binary search tree that results from deleting 39 from the given tree [not the tree from part c!] using the in-order successor.
+Show the binary search tree that results from deleting 25 from the given tree [not the tree from part c!] using the in-order predecessor.
+
+Show the red-black tree that results from inserting each sequence of integers into a tree that is initially empty. In your answer, you can grapically draw red nodes with their data and use R_ as the prefix and black nodes with B_ as the prefix. An example for this is shown below.
+
+42, 36, 40, 33, 35, 32, 41, 31, 34, 49
+2, 1, 4, 5, 9, 3, 6, 7, 11, 10
+
+Here is an example of the RBT from lecture:
+
+                     B_14
+                   /      \
+                 B_7      R_20
+                /  \      /   \
+              R_1  R_11 B_18  B_23
+                                \
+                                R_29
+
+Consider the following undirected graph, which is given in adjacency matrix form and where vertices have the given labels and edges have non-negative integer weights (no value indicates no edge exists):
+
+     v0  v1  v2  v3  v4  v5  v6
+   +----------------------------
+v0 |     3   6   2   
+   |
+v1 | 3       1       6
+   |
+v2 | 6   1       3   4
+   |
+v3 | 2       3       8   7
+   |
+v4 |     6   4   8       3   2
+   |
+v5 |             7   3       2
+   | 
+v6 |                 2   2
+List the node(s) that have a degree of 3.
+Trace Dijkstra's algorithm starting at node v0 by completing the table started below where each row represents one iteration of the algorithm.
+Iteration	List of Visited Vertexes and their
+shortest distances from start	Priority Queue's items
+(listed in increasing order)
+0	-	0 v0
+1	v0 0	2 v3, 3 v1, 6 v2
+2	v0 0, v3 2	 
+What is the shortest path from v0 to v6? Give a list of vertices starting at v0 and ending at v6.
+What is the shortest path from v0 to v5? Give a list of vertices starting at v0 and ending at v5.
+
+Complete the code of the setUnion method. The method takes in two Integer ArrayList as arguments and returns a union set. 
+Note: recall that a set cannot have duplicated elements.
+
+public static List<Integer> setUnion(List<Integer> firstList, List<Integer> secondList) { ... } 
+
+For full credit:
+You may not modify the input ArrayLists.
+Your solution should work with a time-complexity of O(N), where N is the number of integers in the array.
+You may use any appropriate Java data structure implementation from java.util class. Also you may assume that an efficient implementation exists.
+You may assume that individually each ArrayList does not contain duplicate items. But duplicates exist across those two ArrayLists.
+The result ArrayList list should follow the same order as the original ArrayLists, see below example.
+Given below is an example:
+first ArrayList: 22, 11, 4, 7, 3
+second ArrayList: 5, 4, 8, 3, 1
+Union ArrayList: 22, 11, 4, 7, 3, 5, 8, 1
+
+
+*******************************************MY ANSWER **********************************
 Question 1:
 public static <E> E findMiddleItem(Listnode<E> head) { 
 	if(head == null) throw new IllegalArgumentException();
