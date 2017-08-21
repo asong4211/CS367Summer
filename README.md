@@ -1,5 +1,6 @@
 # CS367Summer
 
+CS367: The study of data structures and algorithms. Most of the codes are written in Java.
 
 
 **Program1**: Implementation of LinkedList and use it to build a cloud base computer renting storage to allow users to rent computers.<br />
